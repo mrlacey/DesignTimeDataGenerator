@@ -1,0 +1,6 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <!-- When this package is referenced the targets are imported and projects will automatically include .axaml files as AdditionalFiles -->
+    <AdditionalFiles Include="**\*.axaml" />
+  </ItemGroup>
+</Project>
