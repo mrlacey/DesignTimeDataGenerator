@@ -14,6 +14,8 @@
     <Deterministic>true</Deterministic>
   <!-- Include a README in the NuGet package root -->
   <PackageReadmeFile>README.md</PackageReadmeFile>
+  <!-- Package icon shown in NuGet UIs (PNG/JPG required) -->
+  <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
   <ItemGroup>
   <!-- Use a CodeAnalysis package version that restores cleanly to avoid NU1603 warnings -->
@@ -25,5 +27,7 @@
     <None Include="build\\**\\*.*" Pack="true" PackagePath="build\\" />
   <!-- Pack README into package root so NuGet UI shows it -->
   <None Include="README.md" Pack="true" PackagePath="\" />
+  <!-- Pack a placeholder icon into the package root -->
+  <None Include="icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 </Project>
