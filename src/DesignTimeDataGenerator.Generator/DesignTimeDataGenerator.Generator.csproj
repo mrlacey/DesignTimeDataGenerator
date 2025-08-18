@@ -8,7 +8,7 @@
     <Description>Incremental Roslyn generator that generates partial classes from .axaml files.</Description>
     <PackageTags>roslyn;generator;axaml;design-time</PackageTags>
     <RepositoryUrl>https://github.com/mrlacey/DesignTimeDataGenerator</RepositoryUrl>
-    <NoWarn>1701;1702;1591</NoWarn>
+  <NoWarn>1701;1702;1591;NU5129</NoWarn>
   <!-- Recommended for projects that contain analyzers or source generators -->
   <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     <Deterministic>true</Deterministic>
@@ -16,15 +16,26 @@
   <PackageReadmeFile>README.md</PackageReadmeFile>
   <!-- Package icon shown in NuGet UIs (PNG/JPG required) -->
   <PackageIcon>icon.png</PackageIcon>
+  <!-- SourceLink / source indexing settings -->
+  <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  <RepositoryType>git</RepositoryType>
+  <!-- Embed untracked sources. We'll embed PDBs into assemblies (Release) and not produce a separate .snupkg -->
+  <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  <IncludeSymbols>false</IncludeSymbols>
+  <!-- Embed PDBs into the built assemblies so the main package contains symbol information -->
+  <DebugType>embedded</DebugType>
+  <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
   <!-- Use a CodeAnalysis package version that restores cleanly to avoid NU1603 warnings -->
   <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" PrivateAssets="all" />
+  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
-    <!-- Include the MSBuild targets into the package so that consumer projects automatically add .axaml files to AdditionalFiles -->
-    <None Include="build\\**\\*.*" Pack="true" PackagePath="build\\" />
+  <!-- Include the MSBuild targets into the package so that consumer projects automatically add .axaml files to AdditionalFiles -->
+  <!-- Pack the targets into buildTransitive so SDK-style PackageReference consumers import them transitively -->
+  <None Include="buildTransitive\\DesignTimeDataGenerator.targets" Pack="true" PackagePath="buildTransitive\\" />
   <!-- Pack README into package root so NuGet UI shows it -->
   <None Include="README.md" Pack="true" PackagePath="\" />
   <!-- Pack a placeholder icon into the package root -->
