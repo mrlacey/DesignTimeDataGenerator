@@ -12,6 +12,8 @@
   <!-- Recommended for projects that contain analyzers or source generators -->
   <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
     <Deterministic>true</Deterministic>
+  <!-- Include a README in the NuGet package root -->
+  <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
   <!-- Use a CodeAnalysis package version that restores cleanly to avoid NU1603 warnings -->
@@ -21,5 +23,7 @@
   <ItemGroup>
     <!-- Include the MSBuild targets into the package so that consumer projects automatically add .axaml files to AdditionalFiles -->
     <None Include="build\\**\\*.*" Pack="true" PackagePath="build\\" />
+  <!-- Pack README into package root so NuGet UI shows it -->
+  <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 </Project>
