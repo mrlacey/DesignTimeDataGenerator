@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Snapshots\*.bak" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="coverlet.collector" Version="6.0.2" />
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+		<PackageReference Include="xunit" Version="2.9.2" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+
+		<PackageReference Include="Verify.XUnit" Version="14.7.0" />
+		<PackageReference Include="Verify.SourceGenerators" Version="1.2.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="Xunit" />
+		<Using Include="VerifyXunit" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Snapshots\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\DesignTimeDataGenerator.Generator\DesignTimeDataGenerator.Generator.csproj" />
+	</ItemGroup>
+
+</Project>
